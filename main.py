@@ -13,8 +13,6 @@ def startBot():
             if sellSignal(getData()):
                 FILE = open("stoploss.txt", "w")
                 FILE.write("")
-            else:
-                sellCheck()
         else:
             if getBal("USDT") > getBal("XRP"):
                 buyCheck()
