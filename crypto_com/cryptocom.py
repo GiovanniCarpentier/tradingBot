@@ -119,52 +119,6 @@ def stopLossActive():
         send(messages=["ERROR while checking if the stop loss is active"])
 
 
-def buyCheck():
-    try:
-        time.sleep(16)
-
-        prices = getData()
-        PRICE = prices[2]
-
-        if buySignal(prices):
-            BAL = getBal("USDT")
-            WALLET = BAL / PRICE
-
-            # SEND TO TELEGRAM
-            send(messages=["BOUGHT " + str(WALLET) + " XRP @ " + str(PRICE)])
-            send(messages=["USDT SPENT " + str(BAL)])
-
-            FILE = open("trade.txt", "w")
-            FILE.write(PRICE)
-            FILE.close()
-
-            order("BUY", "USDT", "MARKET")
-
-    except:
-        send(messages=["ERROR while checking buy signal // Crypto.com"])
-
-
-def sellCheck():
-    try:
-        time.sleep(16)
-
-        prices = getData()
-        PRICE = prices[2]
-
-        if sellSignal(prices):
-            WALLET = getBal("XRP")
-
-            # SEND MESSAGE TO TELEGRAM
-            send(messages=["SOLD " + str(WALLET) + " XRP @ " + str(PRICE)])
-            order("SELL", "XRP", "MARKET")
-
-        else:
-            checkForStopLossPlacement(prices)
-
-    except:
-        send(messages=["ERROR while checking sell signal // Crypto.com"])
-
-
 def checkForStopLossPlacement(prices):
     try:
         PRICES = prices[2]
@@ -227,6 +181,52 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
 
     except:
         send(messages=["ERROR while sending order to Crypto.com"])
+
+
+def buyCheck():
+    try:
+        time.sleep(16)
+
+        prices = getData()
+        PRICE = prices[2]
+
+        if buySignal(prices):
+            BAL = getBal("USDT")
+            WALLET = BAL / PRICE
+
+            # SEND TO TELEGRAM
+            send(messages=["BOUGHT " + str(WALLET) + " XRP @ " + str(PRICE)])
+            send(messages=["USDT SPENT " + str(BAL)])
+
+            FILE = open("trade.txt", "w")
+            FILE.write(PRICE)
+            FILE.close()
+
+            order("BUY", "USDT", "MARKET")
+
+    except:
+        send(messages=["ERROR while checking buy signal // Crypto.com"])
+
+
+def sellCheck():
+    try:
+        time.sleep(16)
+
+        prices = getData()
+        PRICE = prices[2]
+
+        if sellSignal(prices):
+            WALLET = getBal("XRP")
+
+            # SEND MESSAGE TO TELEGRAM
+            send(messages=["SOLD " + str(WALLET) + " XRP @ " + str(PRICE)])
+            order("SELL", "XRP", "MARKET")
+
+        else:
+            checkForStopLossPlacement(prices)
+
+    except:
+        send(messages=["ERROR while checking sell signal // Crypto.com"])
 
 
 def digitalSignature(req):
