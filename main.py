@@ -1,13 +1,25 @@
 from crypto_com.cryptocom import *
 
 
+def checkForStopLoss():
+    FILE = open("stoploss.txt", "r")
+    stoploss = FILE.readline()
+    return stoploss
+
+
 def startBot():
     try:
-        send(messages=["BOT is active"])
-        if getBal("USDT") > getBal("XRP"):
-            buyCheck()
+        if checkForStopLoss() == "False":
+            if sellSignal(getData()):
+                FILE = open("stoploss.txt", "w")
+                FILE.write("")
+            else:
+                sellCheck()
         else:
-            sellCheck()
+            if getBal("USDT") > getBal("XRP"):
+                buyCheck()
+            else:
+                sellCheck()
 
     except:
         send(messages=["ERROR something went wrong while starting the bot"])
