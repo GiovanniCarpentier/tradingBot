@@ -20,10 +20,9 @@ def buySignal(prices):
         VWMA = prices[1]
         RSI = prices[3]
 
-        if WMA >= VWMA and RSI < 45:
+        if WMA >= VWMA and RSI < 70:
             return True
         else:
             return False
     except:
         send(messages=["ERROR while checking buy signal"])
-
