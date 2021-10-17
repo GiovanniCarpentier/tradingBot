@@ -25,7 +25,8 @@ def getBal(COIN):
 
     sig = digitalSignature(req)
 
-    response = requests.post(cryptoURL + "private/get-account-summary", json=sig)
+    response = requests.post(
+        cryptoURL + "private/get-account-summary", json=sig)
 
     result = response.json()
 
@@ -59,7 +60,7 @@ def order(SIDE, COIN, TYPE):
         requests.post(cryptoURL + "private/create-order", json=sig)
 
         if SIDE == "BUY":
-           sellCheck()
+            sellCheck()
         else:
             send(messages=["USDT BALANCE " + str(getBal("USDT"))])
             buyCheck()
@@ -103,7 +104,8 @@ def stopLossActive():
 
         sig = digitalSignature(req)
 
-        response = requests.post(cryptoURL + "private/get-open-orders", json=sig)
+        response = requests.post(
+            cryptoURL + "private/get-open-orders", json=sig)
 
         DATA = response.json()
 
@@ -129,7 +131,8 @@ def checkForStopLossPlacement(prices):
 
         # % = Diff ÷ Original Number × 100
 
-        DIFFERENCE_PERCENTAGE = (float(ENTRY_PRICE) - PRICES) / float(ENTRY_PRICE) * 100
+        DIFFERENCE_PERCENTAGE = (
+            float(ENTRY_PRICE) - PRICES) / float(ENTRY_PRICE) * 100
 
         if DIFFERENCE_PERCENTAGE > 10:
             STOPLOSS_PRICE = 0.05 * PRICES
@@ -237,7 +240,8 @@ def digitalSignature(req):
             paramString += key
             paramString += str(req['params'][key])
 
-    sigPayload = req['method'] + str(req['id']) + req['api_key'] + paramString + str(req['nonce'])
+    sigPayload = req['method'] + str(req['id']) + \
+        req['api_key'] + paramString + str(req['nonce'])
 
     req['sig'] = hmac.new(
         bytes(str(SECRET_KEY), 'utf-8'),

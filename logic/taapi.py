@@ -25,7 +25,7 @@ parameters = {
                 "indicator": "candle"
             },
             {
-                "indicator":"rsi"
+                "indicator": "rsi"
             }
         ]
     }
