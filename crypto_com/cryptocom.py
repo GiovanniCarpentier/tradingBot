@@ -2,21 +2,23 @@ import hmac
 import hashlib
 import requests
 import time
+import os
+
 from telegram_send import send
 from logic.buysellsignal import sellSignal, buySignal
 from logic.taapi import getData
+from dotenv import load_dotenv
 
 cryptoURL = "https://api.crypto.com/v2/"
 
-API_KEY = "nEcxzHRgvLXLWdXThbQFxt"
-SECRET_KEY = "xMZDDVMV36hvLc4gXwjo7Z"
+load_dotenv()
 
 
 def getBal(COIN):
     req = {
         "id": 11,
         "method": "private/get-account-summary",
-        "api_key": API_KEY,
+        "api_key": os.getenv("API_KEY"),
         "params": {
             "currency": COIN
         },
@@ -45,7 +47,7 @@ def order(SIDE, COIN, TYPE):
         req = {
             "id": 11,
             "method": "private/create-order",
-            "api_key": API_KEY,
+            "api_key": os.getenv("API_KEY"),
             "params": {
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
@@ -73,7 +75,7 @@ def cancelAllOrders():
         req = {
             "id": 12,
             "method": "private/cancel-all-orders",
-            "api_key": API_KEY,
+            "api_key": os.getenv("API_KEY"),
             "params": {
                 "instrument_name": "XRP_USDT",
             },
@@ -93,7 +95,7 @@ def stopLossActive():
         req = {
             "id": 12,
             "method": "private/get-open-orders",
-            "api_key": API_KEY,
+            "api_key": os.getenv("API_KEY"),
             "params": {
                 "instrument_name": "XRP_USDT",
                 "page_size": 1,
@@ -165,7 +167,7 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
         req = {
             "id": 11,
             "method": "private/create-order",
-            "api_key": API_KEY,
+            "api_key": os.getenv("API_KEY"),
             "params": {
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
@@ -244,7 +246,7 @@ def digitalSignature(req):
         req['api_key'] + paramString + str(req['nonce'])
 
     req['sig'] = hmac.new(
-        bytes(str(SECRET_KEY), 'utf-8'),
+        bytes(str(os.getenv("SECRET_KEY")), 'utf-8'),
         msg=bytes(sigPayload, 'utf-8'),
         digestmod=hashlib.sha256
     ).hexdigest()

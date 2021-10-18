@@ -1,13 +1,15 @@
 import requests
+import os
 
-# SECRET KEY TAAPI eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikdpb3Zhbm5pY2FycGVudGllckBvdXRsb29rLmNvbSIsImlhdCI6MTYzMjkwMDkzNSwiZXhwIjo3OTQwMTAwOTM1fQ.XFN1Mwc6Y8-sNbWdbEbheVzB2V-aamh1eZ38g8CFncQ
 from telegram_send import send
+from dotenv import load_dotenv
 
+load_dotenv()
 
 endpoint = "https://api.taapi.io/bulk"
 
 parameters = {
-    "secret": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikdpb3Zhbm5pY2FycGVudGllckBvdXRsb29rLmNvbSIsImlhdCI6MTYzMjkwMDkzNSwiZXhwIjo3OTQwMTAwOTM1fQ.XFN1Mwc6Y8-sNbWdbEbheVzB2V-aamh1eZ38g8CFncQ",
+    "secret": os.getenv("SECRET"),
     "construct": {
         "exchange": "binance",
         "symbol": "XRP/USDT",
