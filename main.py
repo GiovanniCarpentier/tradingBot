@@ -19,8 +19,9 @@ def startBot():
             else:
                 sellCheck()
 
-    except:
+    except Exception as e:
         send(messages=["ERROR something went wrong while starting the bot"])
+        send(messages=[e])
 
 
 startBot()
