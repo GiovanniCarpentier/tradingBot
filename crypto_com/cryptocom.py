@@ -68,8 +68,9 @@ def order(SIDE, COIN, TYPE):
         else:
             send(messages=["USDT BALANCE " + str(getBal("USDT"))])
             buyCheck()
-    except:
+    except Exception as e:
         send(messages=["ERROR while sending order to Crypto.com"])
+        print(e)
 
 
 def cancelAllOrders():
@@ -88,8 +89,9 @@ def cancelAllOrders():
 
         requests.post(cryptoURL + "private/cancel-all-orders", json=sig)
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while cancelling all orders"])
+        print(e)
 
 
 def stopLossActive():
@@ -121,8 +123,9 @@ def stopLossActive():
         else:
             return True
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while checking if the stop loss is active"])
+        print(e)
 
 
 def checkForStopLossPlacement(prices):
@@ -155,7 +158,7 @@ def checkForStopLossPlacement(prices):
         else:
             stopLossActive()
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while checking stop loss"])
 
 
@@ -186,7 +189,7 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
 
         send(messages=[str(response.json())])
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while sending order to Crypto.com"])
 
 
@@ -211,8 +214,9 @@ def buyCheck():
 
             order("BUY", "USDT", "MARKET")
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while checking buy signal // Crypto.com"])
+        print(e)
 
 
 def sellCheck():
@@ -232,8 +236,9 @@ def sellCheck():
         else:
             checkForStopLossPlacement(prices)
 
-    except:
+    except Exception as e:
         send(messages=["ERROR while checking sell signal // Crypto.com"])
+        print(e)
 
 
 def digitalSignature(req):
