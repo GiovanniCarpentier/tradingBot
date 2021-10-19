@@ -115,7 +115,12 @@ def stopLossActive():
 
         DATA = response.json()
 
-        if DATA["result"]["count"] < 1:
+        FILE = open("stoploss.txt", "r")
+        stoploss = FILE.readline()
+
+        if stoploss == "":
+            return True
+        elif DATA["result"]["count"] < 1:
             STOPLOSS = open("stoploss.txt", "w")
             STOPLOSS.write("False")
             STOPLOSS.close()
