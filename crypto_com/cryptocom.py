@@ -160,6 +160,7 @@ def checkForStopLossPlacement(prices):
 
     except Exception as e:
         send(messages=["ERROR while checking stop loss"])
+        print(e)
 
 
 def stopLoss(SIDE, COIN, TYPE, PRICE):
@@ -191,6 +192,7 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
 
     except Exception as e:
         send(messages=["ERROR while sending order to Crypto.com"])
+        print(e)
 
 
 def buyCheck():
@@ -209,7 +211,7 @@ def buyCheck():
             send(messages=["USDT SPENT " + str(BAL)])
 
             FILE = open("trade.txt", "w")
-            FILE.write(PRICE)
+            FILE.write(str(PRICE))
             FILE.close()
 
             order("BUY", "USDT", "MARKET")
