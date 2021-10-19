@@ -32,6 +32,8 @@ def getBal(COIN):
 
     result = response.json()
 
+    send(messages=[str(result)])
+
     account = result["result"]["accounts"][0]["available"]
 
     return account
