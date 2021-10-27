@@ -9,6 +9,7 @@ def checkForStopLoss():
 
 def startBot():
     try:
+        send(messages=["BOT is active"])
         if checkForStopLoss() == "False":
             if sellSignal(getData()):
                 FILE = open("stoploss.txt", "w")
