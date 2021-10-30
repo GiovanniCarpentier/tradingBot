@@ -230,7 +230,6 @@ def sellCheck():
 
         prices = getData()
         PRICE = prices[2]
-        send(messages=[str(prices)])
 
         if sellSignal(prices):
             WALLET = getBal("XRP")
@@ -244,7 +243,6 @@ def sellCheck():
 
     except Exception as e:
         send(messages=["ERROR while checking sell signal // Crypto.com"])
-        send(messages=[str(e)])
         print(e)
 
 

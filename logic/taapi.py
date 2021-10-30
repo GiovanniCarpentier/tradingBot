@@ -13,15 +13,15 @@ parameters = {
     "construct": {
         "exchange": "binance",
         "symbol": "XRP/USDT",
-        "interval": "1h",
+        "interval": "30m",
         "indicators": [
             {
                 "indicator": "wma",
-                "optInTimePeriod": 26
+                "optInTimePeriod": 20
             },
             {
                 "indicator": "vwma",
-                "period": 40
+                "period": 37
             },
             {
                 "indicator": "candle"
@@ -42,8 +42,6 @@ def getData():
         # Get the response JSON
         result = response.json()
 
-        send(messages=["RESULT TAAPI FETCH -> "+str(result)])
-
         # Create empty array to store price data
         prices = []
 
@@ -55,8 +53,6 @@ def getData():
         prices.append(data[1]["result"]["value"])  # VWMA // 1
         prices.append(data[2]["result"]["open"])  # PRICE // 2
         prices.append(data[3]["result"]["value"])  # RSI // 3
-
-        send(messages=[str(data)])
 
         return prices
 

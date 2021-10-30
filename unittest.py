@@ -10,6 +10,7 @@ def testGetData():
     return data
 
 
+"""""
 def testSellSignal(prices):
     print("start test sell signal")
     print(sellSignal(prices))
@@ -116,3 +117,6 @@ def startTesting():
 
 
 startTesting()
+"""
+
+testGetData()
