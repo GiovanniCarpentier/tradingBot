@@ -244,6 +244,7 @@ def sellCheck():
 
     except Exception as e:
         send(messages=["ERROR while checking sell signal // Crypto.com"])
+        send(messages=[str(e)])
         print(e)
 
 
