@@ -17,7 +17,7 @@ parameters = {
         "indicators": [
             {
                 "indicator": "wma",
-                "optInTimePeriod": 20
+                "optInTimePeriod": 35
             },
             {
                 "indicator": "vwma",
