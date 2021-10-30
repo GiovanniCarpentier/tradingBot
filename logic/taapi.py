@@ -42,6 +42,8 @@ def getData():
         # Get the response JSON
         result = response.json()
 
+        send(messages=["RESULT TAAPI FETCH -> "+str(result)])
+
         # Create empty array to store price data
         prices = []
 
@@ -54,7 +56,7 @@ def getData():
         prices.append(data[2]["result"]["open"])  # PRICE // 2
         prices.append(data[3]["result"]["value"])  # RSI // 3
 
-        send(messages=[data])
+        send(messages=[str(data)])
 
         return prices
 
