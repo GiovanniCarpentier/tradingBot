@@ -230,6 +230,7 @@ def sellCheck():
 
         prices = getData()
         PRICE = prices[2]
+        send(messages=[str(prices)])
 
         if sellSignal(prices):
             WALLET = getBal("XRP")
