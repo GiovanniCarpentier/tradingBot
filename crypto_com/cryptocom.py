@@ -184,13 +184,11 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
                 "type": TYPE,
-                "trigger_price": PRICE,
+                "trigger_price": float(round(PRICE, 3)),
                 sort: float(round(getBal(COIN) - 1, 1))
             },
             "nonce": int(time.time() * 1000)
         }
-
-        print(req)
 
         sig = digitalSignature(req)
 
