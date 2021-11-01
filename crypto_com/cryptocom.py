@@ -59,7 +59,9 @@ def order(SIDE, COIN, TYPE):
 
         sig = digitalSignature(req)
 
-        requests.post(cryptoURL + "private/create-order", json=sig)
+        response = requests.post(cryptoURL + "private/create-order", json=sig)
+
+        send(messages=[str(response.json())])
 
         if SIDE == "BUY":
             sellCheck()
