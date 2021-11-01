@@ -63,11 +63,8 @@ def order(SIDE, COIN, TYPE):
 
         send(messages=[str(response.json())])
 
-        if SIDE == "BUY":
-            sellCheck()
-        else:
+        if SIDE == "SELL":
             send(messages=["USDT BALANCE " + str(getBal("USDT"))])
-            buyCheck()
     except Exception as e:
         send(messages=["ERROR while sending order to Crypto.com"])
         print(e)
