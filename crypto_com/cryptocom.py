@@ -143,12 +143,8 @@ def checkForStopLossPlacement(prices):
         DIFFERENCE_PERCENTAGE = (
             PRICES - float(ENTRY_PRICE)) / float(ENTRY_PRICE) * 100
 
-        print(DIFFERENCE_PERCENTAGE)
-
         if DIFFERENCE_PERCENTAGE > 10:
-            STOPLOSS_PRICE = 0.05 * float(PRICES)
-
-            print(STOPLOSS_PRICE)
+            STOPLOSS_PRICE = PRICES - (0.05 * PRICES)
 
             FILE = open("trade.txt", "w")
             FILE.write(str(STOPLOSS_PRICE))
