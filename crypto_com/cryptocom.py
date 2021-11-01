@@ -190,6 +190,8 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
             "nonce": int(time.time() * 1000)
         }
 
+        print(req)
+
         sig = digitalSignature(req)
 
         response = requests.post(cryptoURL + "private/create-order", json=sig)
