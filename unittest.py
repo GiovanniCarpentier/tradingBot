@@ -2,13 +2,15 @@ from crypto_com.cryptocom import *
 from logic.buysellsignal import *
 from logic.taapi import *
 
-"""""
+
 def testGetData():
     print("start get data")
     data = getData()
     print(data)
     return data
 
+
+"""""
 
 def testSellSignal(prices):
     print("start test sell signal")
@@ -35,7 +37,7 @@ def testCancelOrders():
     print("done")
 
 
-"""
+
 
 
 def testOrder(SIDE, COIN, TYPE):
@@ -45,6 +47,7 @@ def testOrder(SIDE, COIN, TYPE):
 
 
 """
+
 
 def testStopLossActive():
     print("start test stop loss active")
@@ -57,6 +60,8 @@ def testCheckForStopLossPlacement(prices):
     checkForStopLossPlacement(prices)
     print("done")
 
+
+"""
 
 def testStopLoss(SIDE, COIN, TYPE, PRICE):
     print("start test stop loss")
@@ -122,9 +127,16 @@ def startTesting():
 
 startTesting()
 """
-
+""""
 testOrder("SELL", "XRP", "MARKET")
 
 time.sleep(10)
 
 testOrder("BUY", "USDT", "MARKET")
+"""
+
+data = testGetData()
+time.sleep(10)
+testCheckForStopLossPlacement(data)
+time.sleep(10)
+print(testStopLossActive())
