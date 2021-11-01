@@ -184,8 +184,8 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
                 "type": TYPE,
-                "price": PRICE,
-                sort: float(round(getBal(COIN) - 0.1, 1))
+                "trigger_price": PRICE,
+                sort: float(round(getBal(COIN) - 1, 1))
             },
             "nonce": int(time.time() * 1000)
         }
