@@ -190,6 +190,7 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
 
         response = requests.post(cryptoURL + "private/create-order", json=sig)
 
+        send(messages=["Placed stop loss"])
         send(messages=[str(response.json())])
 
     except Exception as e:
