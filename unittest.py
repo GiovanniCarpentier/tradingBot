@@ -123,4 +123,4 @@ def startTesting():
 startTesting()
 """
 
-testOrder("SELL", "XRP", "MARKET")
+testOrder("BUY", "USDT", "MARKET")
