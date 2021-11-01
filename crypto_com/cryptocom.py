@@ -147,7 +147,7 @@ def checkForStopLossPlacement(prices):
             STOPLOSS_PRICE = 0.05 * PRICES
 
             FILE = open("trade.txt", "w")
-            FILE.write(STOPLOSS_PRICE)
+            FILE.write(str(STOPLOSS_PRICE))
             FILE.close()
 
             STOPLOSS = open("stoploss.txt", "w")
