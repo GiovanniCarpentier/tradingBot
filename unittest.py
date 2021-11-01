@@ -123,4 +123,8 @@ def startTesting():
 startTesting()
 """
 
+testOrder("SELL", "XRP", "MARKET")
+
+time.sleep(10)
+
 testOrder("BUY", "USDT", "MARKET")
