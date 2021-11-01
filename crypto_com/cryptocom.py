@@ -141,7 +141,7 @@ def checkForStopLossPlacement(prices):
         # % = Diff ÷ Original Number × 100
 
         DIFFERENCE_PERCENTAGE = (
-            float(PRICES) - float(ENTRY_PRICE)) / float(ENTRY_PRICE) * 100
+            PRICES - float(ENTRY_PRICE)) / float(ENTRY_PRICE) * 100
 
         print(DIFFERENCE_PERCENTAGE)
 
