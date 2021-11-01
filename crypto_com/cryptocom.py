@@ -143,6 +143,10 @@ def checkForStopLossPlacement(prices):
         DIFFERENCE_PERCENTAGE = (
             float(ENTRY_PRICE) - PRICES) / float(ENTRY_PRICE) * 100
 
+        print(ENTRY_PRICE)
+        print(PRICES)
+        print(DIFFERENCE_PERCENTAGE)
+
         if DIFFERENCE_PERCENTAGE > 10:
             STOPLOSS_PRICE = 0.05 * PRICES
 
