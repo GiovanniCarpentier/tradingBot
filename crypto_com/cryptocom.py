@@ -37,7 +37,7 @@ def getBal(COIN):
     return account
 
 
-def order(SIDE, COIN, TYPE):
+async def order(SIDE, COIN, TYPE):
     try:
         if SIDE == "BUY":
             sort = "notional"
@@ -57,11 +57,11 @@ def order(SIDE, COIN, TYPE):
             "nonce": int(time.time() * 1000)
         }
 
-        send(messages=[str(req)])
+        sig = await digitalSignature(req)
 
-        sig = digitalSignature(req)
+        send(messages=[str(sig)])
 
-        response = requests.post(cryptoURL + "private/create-order", json=sig)
+        response = await requests.post(cryptoURL + "private/create-order", json=sig)
 
         send(messages=[str(response.json())])
 
@@ -248,7 +248,7 @@ def sellCheck():
         print(e)
 
 
-def digitalSignature(req):
+async def digitalSignature(req):
     paramString = ""
 
     if "params" in req:
@@ -265,4 +265,4 @@ def digitalSignature(req):
         digestmod=hashlib.sha256
     ).hexdigest()
 
-    return req
+    return await req
