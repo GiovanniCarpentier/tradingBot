@@ -52,14 +52,15 @@ def order(SIDE, COIN, TYPE):
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
                 "type": TYPE,
-                sort: float(round(getBal(COIN) - 2, 2))
+                sort: str(float(round(getBal(COIN) - 2, 2)))
             },
-            "nonce": int(time.time() * 1000)
+            "nonce": str(int(time.time() * 1000))
         }
 
         sig = digitalSignature(req)
 
-        response = requests.post(cryptoURL + "private/create-order", json=sig)
+        response = requests.post(
+            cryptoURL + "private/create-order", json=sig)
 
         send(messages=[str(response.json())])
 
@@ -79,7 +80,7 @@ def cancelAllOrders():
             "params": {
                 "instrument_name": "XRP_USDT",
             },
-            "nonce": int(time.time() * 1000)
+            "nonce": str(int(time.time() * 1000))
         }
 
         sig = digitalSignature(req)
@@ -99,8 +100,8 @@ def stopLossActive():
             "api_key": os.getenv("API_KEY"),
             "params": {
                 "instrument_name": "XRP_USDT",
-                "page_size": 1,
-                "page": 0
+                "page_size": str(1),
+                "page": str(0)
             },
             "nonce": int(time.time() * 1000)
         }
@@ -180,8 +181,8 @@ def stopLoss(SIDE, COIN, TYPE, PRICE):
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
                 "type": TYPE,
-                "trigger_price": float(round(PRICE, 3)),
-                sort: float(round(getBal(COIN) - 1, 1))
+                "trigger_price": str(float(round(PRICE, 3))),
+                sort: str(float(round(getBal(COIN) - 1, 1)))
             },
             "nonce": int(time.time() * 1000)
         }
