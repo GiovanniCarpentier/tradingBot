@@ -52,7 +52,7 @@ def order(SIDE, COIN, TYPE):
                 "instrument_name": "XRP_USDT",
                 "side": SIDE,
                 "type": TYPE,
-                sort: str(float(round(getBal(COIN) - 2, 2)))
+                sort: str(float(round(getBal(COIN) - 2, 1)))
             },
             "nonce": str(int(time.time() * 1000))
         }
