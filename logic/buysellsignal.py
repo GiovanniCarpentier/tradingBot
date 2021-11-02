@@ -6,8 +6,8 @@ def sellSignal(prices):
         WMA = prices[0]
         VWMA = prices[1]
 
-        send(messages=["WMA -> " + str(WMA) + " \n " +
-             "VWMA -> " + str(VWMA)])
+        send(messages=["WMA -> " + str(round(WMA, 4)) + " \n " +
+             "VWMA -> " + str(round(VWMA, 4)) + " \n " + "DIFF -> " + str(VWMA - WMA)])
 
         if WMA < VWMA:
             return True
@@ -23,8 +23,8 @@ def buySignal(prices):
         VWMA = prices[1]
         RSI = prices[3]
 
-        send(messages=["WMA -> " + str(WMA) + " \n " +
-             "VWMA -> " + str(VWMA) + " \n " + "RSI " + str(RSI)])
+        send(messages=["WMA -> " + str(round(WMA, 4)) + " \n " +
+             "VWMA -> " + str(round(VWMA, 4)) + " \n " + "DIFF -> " + str(WMA - VWMA) + " \n " + "RSI -> " + str(RSI)])
 
         if WMA > VWMA and RSI < 70:
             return True
