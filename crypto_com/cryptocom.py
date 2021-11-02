@@ -57,6 +57,8 @@ def order(SIDE, COIN, TYPE):
             "nonce": int(time.time() * 1000)
         }
 
+        send(messages=[str(req)])
+
         sig = digitalSignature(req)
 
         response = requests.post(cryptoURL + "private/create-order", json=sig)
