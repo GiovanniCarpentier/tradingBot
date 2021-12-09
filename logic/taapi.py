@@ -13,21 +13,18 @@ parameters = {
     "construct": {
         "exchange": "binance",
         "symbol": "XRP/USDT",
-        "interval": "30m",
+        "interval": "5m",
         "indicators": [
             {
-                "indicator": "wma",
-                "optInTimePeriod": 35
+                "indicator": "rsi",
+                "optInTimePeriod": 14
             },
             {
-                "indicator": "vwma",
-                "period": 37
+                "indicator": "sma",
+                "period": 100
             },
             {
                 "indicator": "candle"
-            },
-            {
-                "indicator": "rsi"
             }
         ]
     }
@@ -49,10 +46,9 @@ def getData():
         data = result.get("data")
 
         # For every item in data get the result and the value in the result and add it to the price array
-        prices.append(data[0]["result"]["value"])  # WMA // 0
-        prices.append(data[1]["result"]["value"])  # VWMA // 1
-        prices.append(data[2]["result"]["open"])  # PRICE // 2
-        prices.append(data[3]["result"]["value"])  # RSI // 3
+        prices.append(data[0]["result"]["value"])  # RSI
+        prices.append(data[1]["result"]["value"])  # SMA
+        prices.append(data[2]["result"]["close"])  # PRICE // 2
 
         return prices
 
