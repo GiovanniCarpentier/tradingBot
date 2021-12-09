@@ -3,10 +3,9 @@ from telegram_send import send
 
 def sellSignal(prices):
     try:
-        WMA = prices[0]
-        VWMA = prices[1]
+        RSI = prices[0]
 
-        if WMA < VWMA:
+        if RSI > 75:
             return True
         else:
             return False
@@ -16,11 +15,11 @@ def sellSignal(prices):
 
 def buySignal(prices):
     try:
-        WMA = prices[0]
-        VWMA = prices[1]
-        RSI = prices[3]
+        RSI = prices[0]
+        SMA = prices[1]
+        CANDLE = prices[3]
 
-        if WMA > VWMA and RSI < 70:
+        if CANDLE > SMA and RSI < 75:
             return True
         else:
             return False
